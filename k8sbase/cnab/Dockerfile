@@ -17,6 +17,6 @@ RUN apk add --update ca-certificates curl \
 
 RUN helm init -c
 
-COPY cnab/app/Makefile /cnab/app/Makefile
+COPY app/Makefile /cnab/app/Makefile
+COPY app/charts /cnab/app/charts
 COPY Dockerfile cnab/Dockerfile
-COPY cnab/app/charts /cnab/app/charts
