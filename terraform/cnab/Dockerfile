@@ -14,8 +14,7 @@ RUN apk add --update git curl openssh bash-completion && \
     pip install azure-cli
 
 COPY Dockerfile /cnab/Dockerfile
-COPY cnab/app /cnab/app
-COPY bundle.json /cnab/bundle.json
+COPY app /cnab/app
 
 RUN chmod 755 /cnab/app/run
 RUN chmod 755 /cnab/app/init-backend
