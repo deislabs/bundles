@@ -58,7 +58,7 @@ define all
 endef
 
 define docker-all
-	$(call all,Dockerfile,$(1))
+	$(call all,cnab/Dockerfile,$(1))
 endef
 
 define bundle-all
