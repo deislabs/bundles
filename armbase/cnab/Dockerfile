@@ -4,7 +4,6 @@ RUN apk add --update ca-certificates \
 # && apk del --purge deps \
  && rm /var/cache/apk/*
 
-COPY ../bundle.json /cnab/bundle.json
 COPY Dockerfile /cnab/Dockerfile
 COPY app/armup /cnab/app/armup
 COPY app/arm /cnab/app/arm

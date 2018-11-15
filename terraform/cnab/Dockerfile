@@ -14,7 +14,6 @@ RUN apk add --update git curl openssh bash-completion && \
 
 COPY Dockerfile /cnab/Dockerfile
 COPY app /cnab/app
-COPY ../bundle.json /cnab/bundle.json
 
 RUN chmod 755 /cnab/app/run
 RUN chmod 755 /cnab/app/init-backend
