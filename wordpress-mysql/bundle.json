@@ -27,6 +27,12 @@
       }
     },
     "credentials": {
+      "azure_tokens": {
+        "path": "/root/.azure/accessTokens.json"
+      },
+      "azure_profile": {
+        "path": "/root/.azure/azureProfile.json"
+      },
       "mysql_user": {
         "env": "MYSQL_USER"
       },
