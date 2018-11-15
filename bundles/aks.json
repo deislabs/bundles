@@ -1,10 +1,12 @@
 {
     "name": "aks",
     "version": "0.2.0",
-    "invocationImage": {
+    "invocationImages": [
+      {
         "imageType": "docker",
         "image": "michellenoorali/aks-bundle:0.2.0"
-    },
+      }
+    ],
     "images": null,
     "parameters": {
       "domain": {
@@ -21,8 +23,17 @@
       }
     },
     "credentials": {
-      "subscription": {
-        "env": "SUBSCRIPTION"
+      "azure_sub": {
+        "env": "AZURE_SUB"
+      },
+      "azure_tokens": {
+        "path": "/root/.azure/accessTokens.json"
+      },
+      "azure_profiles": {
+        "path": "/root/.azure/azureProfile.json"
+      },
+      "azure_cloud_config": {
+        "path": "/root/.azure/clouds.config"
       }
     }
 }

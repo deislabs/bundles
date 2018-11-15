@@ -25,14 +25,9 @@ build:
 cxbuild:
 	GOOS=linux GOARCH=amd64 go build $(GOFLAGS) -o cnab/app/armup -ldflags '$(LDFLAGS)' ./...
 
-.PHONY: docker-build
-docker-build: cxbuild
-docker-build:
-	docker build -t cnab/armbase:0.1.0 .
-	docker tag cnab/armbase:0.1.0 cnab/armbase:latest
-
-docker-push:
-	docker push cnab/armbase
+# Note: to build/push the Docker image for this bundle,
+# call the root Makefile's targets from the root of this project , e.g.
+# BUNDLE=armbase make docker-build
 
 .PHONY: test
 test:
