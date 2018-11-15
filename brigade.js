@@ -57,7 +57,7 @@ class Notification {
   // Send a new notification, and return a Promise<result>.
   run() {
     this.count++
-    var j = new Job(`${ this.name }-${ this.count }`, "technosophos/brigade-github-check-run:latest");
+    var j = new Job(`${ this.name }-${ this.count }`, "deis/brigade-github-check-run:latest");
     j.env = {
       CHECK_CONCLUSION: this.conclusion,
       CHECK_NAME: this.name,
