@@ -103,6 +103,8 @@ async function notificationWrap(job, note, conclusion) {
 
 function dockerPublish(project, gitTag, imageTag) {
   const publisher = new Job(`${projectName}-docker-publish`, "docker");
+  let dockerRegistry = project.secrets.dockerhubRegistry || "docker.io";
+  let dockerOrg = project.secrets.dockerhubOrg || "cnab";
 
   publisher.docker.enabled = true;
   publisher.tasks = [
