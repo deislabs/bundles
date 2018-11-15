@@ -26,7 +26,7 @@ RUN apk update && apk add --no-cache openssl ca-certificates curl libgcc && \
     rm dockerbins.tgz /etc/apk/keys/sgerrand.rsa.pub glibc-$GLIBC.apk && \
     apk del curl
 
-COPY cnab/app /cnab/app
+COPY app /cnab/app
 COPY Dockerfile /cnab/Dockerfile
 
 CMD ["/cnab/app/run"]
