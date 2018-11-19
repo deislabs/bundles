@@ -22,8 +22,16 @@ BUNDLE=<bundle> make docker-run
 
 ### Test Bundle
 
+### Docker-based
+
 ```shell
 BUNDLE=<bundle> make test-functional
+```
+
+### Local
+
+```shell
+BUNDLE=<bundle> make test-functional-local
 ```
 
 ## All Bundles
@@ -42,6 +50,14 @@ make docker-push-all
 
 ## Test all Bundles
 
+### Docker-based
+
 ```shell
-make test-functional-all
+make test-functional
+```
+
+### Local
+
+```shell
+make test-functional-local
 ```

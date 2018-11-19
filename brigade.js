@@ -2,12 +2,14 @@ const { events, Job, Group } = require("brigadier")
 
 const projectName = "bundles"
 
-function test(e, p) {
-  var test = new Job(`${projectName}-test`, "docker");
+function test(e, project) {
+  var test = new Job(`${projectName}-test`, "brigade.azurecr.io/deis/duffle:latest");
+  test.imagePullSecrets = ["brigade-acr-pull-secret"]
 
   test.tasks = [
     "apk add --update --no-cache make",
-    "make test-functional-all"
+    "cd /src",
+    "SHELL=/bin/sh make test-functional-local"
   ];
 
   return test
@@ -31,7 +33,7 @@ function runTests(e, p) {
   note.text = "Ensuring all tests all pass."
 
   // Send notification, then run, then send pass/fail notification
-  return notificationWrap(test, note)
+  return notificationWrap(test(e, p), note)
 }
 
 // A GitHub Check Suite notification
@@ -118,7 +120,7 @@ function dockerPublish(project, gitTag, imageTag) {
 }
 
 events.on("exec", (e, p) => {
-  return test(e, p).run()
+  test(e, p).run()
 })
 
 events.on("check_suite:requested", runSuite)

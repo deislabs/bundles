@@ -8,14 +8,13 @@ GIT_TAG         := $(shell git describe --tags --always)
 VERSION         ?= ${GIT_TAG}
 IMAGE_TAG       ?= $(VERSION)
 BUNDLE          ?=
-# TODO: change to official
-DUFFLE_IMG      ?= quay.io/vdice/duffle:latest
+DUFFLE_IMG      ?= brigade.azurecr.io/deis/duffle:latest
 
 ifeq ($(OS),Windows_NT)
 	SHELL  = cmd.exe
 	CHECK  = where.exe
 else
-	SHELL  = bash
+	SHELL  ?= bash
 	CHECK  = command -v
 endif
 
@@ -35,7 +34,7 @@ endif
 
 .PHONY: docker-build
 docker-build: check-bundle
-	docker build -t $(DOCKER_REGISTRY)/$(BUNDLE):$(IMAGE_TAG) ${BUNDLE}/cnab
+	docker build -t $(DOCKER_REGISTRY)/$(BUNDLE):$(IMAGE_TAG) $(BUNDLE)/cnab
 
 .PHONY: docker-run
 docker-run: check-bundle
@@ -46,8 +45,12 @@ docker-push: check-bundle
 	docker push $(DOCKER_REGISTRY)/$(BUNDLE):$(IMAGE_TAG)
 
 .PHONY: test-functional
-test-functional: check-bundle
+test-functional:
 	docker run --rm -v ${BASE_DIR}:/src -w /src $(DUFFLE_IMG) ./scripts/test-functional.sh $(BUNDLE)
+
+.PHONY: test-functional-local
+test-functional-local:
+	./scripts/test-functional.sh $(BUNDLE)
 
 define all
 	@for dir in $$(ls -1); do \
@@ -61,10 +64,6 @@ define docker-all
 	$(call all,cnab/Dockerfile,$(1))
 endef
 
-define bundle-all
-	$(call all,bundle.json,$(1))
-endef
-
 .PHONY: docker-build-all
 docker-build-all:
 	$(call docker-all,docker-build)
@@ -72,7 +71,3 @@ docker-build-all:
 .PHONY: docker-push-all
 docker-push-all:
 	$(call docker-all,docker-push)
-
-.PHONY: test-functional-all
-test-functional-all:
-	$(call bundle-all,test-functional)
