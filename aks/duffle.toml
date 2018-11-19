@@ -1,3 +1,4 @@
 name = "aks"
-registry = "michellenoorali"
+registry = "cnab"
 components = ["cnab"]
+version = "0.2.0"

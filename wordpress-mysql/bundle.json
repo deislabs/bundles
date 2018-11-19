@@ -1,10 +1,11 @@
 {
-    "name": "wordpress-mysql-bundle",
-    "version": "0.1.0",
+    "name": "wordpress-mysql",
+    "version": "0.2.0",
     "invocationImages": [
       {
         "imageType": "docker",
-        "image": "michellenoorali/wordpress-mysql-bundle:0.1.0"
+        "image": "cnab/wordpress-mysql:0.2.0",
+        "digest": "sha256:8247a5a069423144cf8569ac511ca460a05b3bf4e1d2f39e010e494061764f34"
       }
     ],
     "images": null,

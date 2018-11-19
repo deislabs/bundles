@@ -14,6 +14,7 @@ RUN apk add --update ca-certificates \
  && apk update && \
   apk add bash py-pip && \
   apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
+  pip install --upgrade pip && \
   pip install azure-cli
 
 COPY app/run /cnab/app/run

@@ -11,6 +11,7 @@ RUN apk add --update ca-certificates \
  && rm -f /helm-${HELM_LATEST_VERSION}-linux-amd64.tar.gz \
  && apk add bash py-pip \
  && apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make \
+ && pip install --upgrade pip \
  && pip install azure-cli \
  && apk del --purge deps \
  && rm /var/cache/apk/*

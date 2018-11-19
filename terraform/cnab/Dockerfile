@@ -10,6 +10,7 @@ RUN apk add --update git curl openssh bash-completion && \
     apk update && \
     apk add bash py-pip && \
     apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python-dev make && \
+    pip install --upgrade pip && \
     pip install azure-cli
 
 COPY Dockerfile /cnab/Dockerfile

@@ -1,10 +1,11 @@
 {
     "name": "wordpress",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "invocationImages": [
         {
         "imageType": "docker",
-        "image": "michellenoorali/wordpress-bundle:0.1.0"
+        "image": "cnab/wordpress:0.2.0",
+        "digest": "sha256:c2a5b9f2050908e42ed9a8ca9223b579ce8f5d0981f513234317737a43edb72e"
         }
     ],
     "images": null,

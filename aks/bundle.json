@@ -4,7 +4,8 @@
     "invocationImages": [
       {
         "imageType": "docker",
-        "image": "michellenoorali/aks-bundle:0.2.0"
+        "image": "cnab/aks:0.2.0",
+        "digest": "sha256:9b66eabf77390283b7cd51e7d0c8369f38f3157a54802736eb8eaa7decca3d12"
       }
     ],
     "images": null,
