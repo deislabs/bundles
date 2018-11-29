@@ -1,0 +1,37 @@
+{
+    "name": "hellohelm",
+    "version": "0.1.0",
+    "description": "A helloworld example that installs a helm chart",
+    "keywords": [
+        "helloworld",
+        "helm",
+        "example"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
+    "parameters": {
+        "port": {
+            "defaultValue": 8080,
+            "type": "int"
+        }
+    },
+    "credentials": {
+        "kubeconfig": {
+            "path": "/root/.kube/config"
+        }
+    }
+}

@@ -1,0 +1,59 @@
+{
+    "name": "wordpress-mysql",
+    "version": "0.1.0",
+    "description": "A wordpress site using Azure Database for MySQL and AKS",
+    "keywords": [
+        "wordpress",
+        "mysql",
+        "azure",
+        "kubernetes"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
+    "parameters": {
+        "resource_group": {
+            "defaultValue": "duffle-group",
+            "type": "string"
+        },
+        "cluster_name": {
+            "defaultValue": "my-aks-cluster",
+            "type": "string"
+        },
+        "mysql_resource_group": {
+            "defaultValue": "aks-wordpress-mysql",
+            "type": "string"
+        },
+        "mysql_db_service_name": {
+            "defaultValue": "mymysqldb",
+            "type": "string"
+        }
+    },
+    "credentials": {
+        "azure_tokens": {
+            "path": "/root/.azure/accessTokens.json"
+        },
+        "azure_profile": {
+            "path": "/root/.azure/azureProfile.json"
+        },
+        "mysql_user": {
+            "env": "MYSQL_USER"
+        },
+        "mysql_password": {
+            "env": "MYSQL_PASSWORD"
+        }
+    }
+}

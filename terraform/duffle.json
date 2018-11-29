@@ -1,18 +1,33 @@
 {
     "name": "terraform",
     "version": "0.1.0",
+    "description": "A terraform example creating a VM on Azure",
+    "keywords": [
+        "terraform",
+        "azure"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
     "parameters": {
         "backend": {
             "type": "boolean",
             "defaultValue": false
         }
     },
-    "invocationImages": [
-        {
-        "imageType": "docker",
-        "image": "cnab/terraform:latest"
-        }
-    ],
     "credentials": {
         "tenant_id": {
             "env": "TF_VAR_tenant_id"

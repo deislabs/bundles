@@ -1,13 +1,27 @@
 {
-    "name": "armbase",
+    "name": "arm-aci",
     "version": "0.1.0",
-    "invocationImages": [
+    "description": "An Azure Resource Manager (ARM) example creating an instance of Azure Container Instances (ACI) using armbase as the base invocation image",
+    "keywords": [
+        "azure",
+        "arm"
+    ],
+    "maintainers": [
         {
-        "imageType": "docker",
-        "image": "cnab/armbase:0.1.0"
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
         }
     ],
-    "images": [],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",

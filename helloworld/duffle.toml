@@ -1,3 +1,0 @@
-name = "helloworld"
-registry = "bacongobbler"
-components = ["cnab"]

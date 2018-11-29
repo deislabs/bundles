@@ -16,7 +16,6 @@ case $action in
         echo "Configuring helm to easily install apps on your AKS cluster..."
         helm init --client-only
 
-
         echo "Creating a resource group called $CNAB_P_MYSQL_RESOURCE_GROUP for the mysql database service..."
         az group create --name $CNAB_P_MYSQL_RESOURCE_GROUP --location westus
 

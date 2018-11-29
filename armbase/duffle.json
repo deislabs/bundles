@@ -1,19 +1,27 @@
 {
-    "name": "arm-aci",
+    "name": "armbase",
     "version": "0.1.0",
-    "invocationImages": [
+    "description": "An Azure Resource Manager (ARM) example",
+    "keywords": [
+        "azure",
+        "arm"
+    ],
+    "maintainers": [
         {
-            "imageType": "docker",
-            "image": "technosophos/arm-aci:0.1.0"
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
         }
     ],
-    "images": [
-        {
-            "imageType": "docker",
-            "image": "microsoft/aci-helloworld",
-            "digest": "sha256:a3b2eb140e6881ca2c4df4d9c97bedda7468a5c17240d7c5d30a32850a2bc573"
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
         }
-    ],
+    },
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",

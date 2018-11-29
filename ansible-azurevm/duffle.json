@@ -1,13 +1,27 @@
 {
     "name": "ansible-azurevm",
     "version": "0.1.0",
-    "invocationImages": [
+    "description": "An ansible application bundle that boots a VM on Azure",
+    "keywords": [
+        "ansible",
+        "azure"
+    ],
+    "maintainers": [
         {
-        "imageType": "docker",
-        "image": "cnab/ansible-azurevm:latest"
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
         }
     ],
-    "images": [],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
     "parameters": {
         "check": {
             "defaultValue": false,

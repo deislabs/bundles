@@ -1,13 +1,27 @@
 {
     "name": "ansiblebase",
     "version": "0.1.0",
-    "invocationImages": [
+    "description": "An ansible base invocation image",
+    "keywords": [
+        "ansible",
+        "base-image"
+    ],
+    "maintainers": [
         {
-        "imageType": "docker",
-        "image": "cnab/ansiblebase:latest"
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
         }
     ],
-    "images": [],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
     "parameters": {
         "azure_resource_group": {
             "defaultValue": "armbase-default",

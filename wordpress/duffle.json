@@ -1,0 +1,27 @@
+{
+    "name": "wordpress",
+    "version": "0.1.0",
+    "description": "A wordpress site installed on a Kubernetes cluster",
+    "keywords": [
+        "wordpress",
+        "kubernetes"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
+    "parameters": null,
+    "credentials": null
+}

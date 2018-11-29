@@ -1,0 +1,32 @@
+{
+    "name": "helloworld",
+    "version": "0.1.0",
+    "description": "A helloworld example that just echo's to the terminal",
+    "keywords": [
+        "helloworld",
+        "example"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
+    "parameters": {
+        "port": {
+            "defaultValue": 8080,
+            "type": "int"
+        }
+    },
+    "credentials": null
+}

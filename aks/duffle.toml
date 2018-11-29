@@ -1,4 +1,0 @@
-name = "aks"
-registry = "cnab"
-components = ["cnab"]
-version = "0.2.0"

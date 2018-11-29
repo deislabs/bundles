@@ -1,0 +1,53 @@
+{
+    "name": "aks",
+    "version": "0.1.0",
+    "description": "Creates an AKS cluster",
+    "keywords": [
+        "azure",
+        "aks"
+    ],
+    "maintainers": [
+        {
+            "name": "Deis Labs",
+            "email": "mabutch@microsoft.com",
+            "url": "https://deislabs.io/"
+        }
+    ],
+    "components": {
+        "cnab": {
+            "name": "cnab",
+            "builder": "docker",
+            "configuration": {
+                "registry": "cnab"
+            }
+        }
+    },
+    "parameters": {
+        "domain": {
+            "defaultValue": "containernativelabs.io",
+            "type": "string"
+        },
+        "resource_group": {
+            "defaultValue": "duffle-aks",
+            "type": "string"
+        },
+        "lego_email": {
+            "defaultValue": "minooral@microsoft.com",
+            "type": "string"
+        }
+    },
+    "credentials": {
+        "azure_sub": {
+            "env": "AZURE_SUB"
+        },
+        "azure_tokens": {
+            "path": "/root/.azure/accessTokens.json"
+        },
+        "azure_profiles": {
+            "path": "/root/.azure/azureProfile.json"
+        },
+        "azure_cloud_config": {
+            "path": "/root/.azure/clouds.config"
+        }
+    }
+}
