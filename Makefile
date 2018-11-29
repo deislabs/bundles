@@ -12,6 +12,9 @@ IMAGE_TAG       ?= $(subst +,-,$(VERSION))
 BUNDLE          ?=
 DUFFLE_IMG      ?= brigade.azurecr.io/deislabs/duffle:latest
 
+# --no-print-directory avoids verbose cd logging when invoking targets that utilize sub-makes
+MAKE_OPTS       ?= --no-print-directory
+
 ifeq ($(OS),Windows_NT)
 	SHELL  = cmd.exe
 	CHECK  = where.exe
@@ -40,7 +43,7 @@ endif
 define all
 	@for dir in $$(ls -1); do \
 		if [[ -e "$$dir/$(1)" ]]; then \
-			BUNDLE=$$dir make $(2) ; \
+			BUNDLE=$$dir make $(MAKE_OPTS) $(2) ; \
 		fi ; \
 	done
 endef
@@ -60,6 +63,9 @@ check-bundle:
 ifndef BUNDLE
 	$(error BUNDLE must be provided, e.g., BUNDLE=<bundle> make <target>)
 endif
+
+.PHONY: build
+build: docker-build sign-local
 
 .PHONY: docker-build
 docker-build:
@@ -153,7 +159,7 @@ INSECURE ?= false
 .PHONY: test-functional
 test-functional:
 ifeq ($(INSECURE),false)
-	make sign-local
+	make $(MAKE_OPTS) sign-local
 endif
 	./scripts/test-functional.sh
 
@@ -165,4 +171,4 @@ test-functional-docker:
 		-e BUNDLE=$(BUNDLE) \
 		-e INSECURE=$(INSECURE) \
 		-e CHECK=which \
-		$(DUFFLE_IMG) sh -c 'duffle init -u "test@$(ORG)-$(PROJECT).com" && make test-functional'
+		$(DUFFLE_IMG) sh -c "make $(MAKE_OPTS) test-functional"

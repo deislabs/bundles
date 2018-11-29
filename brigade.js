@@ -5,9 +5,7 @@ const projectName = "bundles"
 // minimal shell env for images w/o git, bash, etc.
 const shellEnv = {
   GIT: ":",
-  CHECK: "which",
-  // this avoids verbose logging when invoking targets that utilize sub-makes
-  MAKE: "make --no-print-directory"
+  CHECK: "which"
 }
 
 function testFunctional(e, project) {
@@ -19,10 +17,10 @@ function testFunctional(e, project) {
   test.tasks = [
     "cd /src",
     // ensure functional tests running in (default) secure mode pass
-    "${MAKE} test-functional",
+    "make test-functional",
     // ensure functional tests running in insecure mode pass
     "rm -rf ~/.duffle",
-    "INSECURE=true ${MAKE} test-functional"
+    "INSECURE=true make test-functional"
   ];
 
   return test
@@ -40,7 +38,7 @@ function validate(e, project) {
     "apk add --update make",
     "cd /src",
     // ensure all bundle.json files adhere to json schema
-    "${MAKE} build-validator-local validate-local",
+    "make build-validator-local validate-local",
   ];
 
   return validator
