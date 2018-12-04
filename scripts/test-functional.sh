@@ -35,29 +35,31 @@ function get_required_params() {
   bundle="${1}"
   required_params=""
 
-  param_and_types=$(cat "${bundle}/bundle.json" \
-    | jq -r '.parameters | to_entries[] | select(.value.required==true) | "\(.key)=\(.value.type)"')
+  if param_and_types="$(cat "${bundle}/bundle.json" \
+    | jq -r '.parameters | to_entries[] | select(.value.required==true) | "\(.key)=\(.value.type)"' 2> /dev/null)"; then
 
-  for param_and_type in ${param_and_types}; do
-    param="${param_and_type%=*}"
-    type="${param_and_type#*=}"
+    for param_and_type in ${param_and_types}; do
+      param="${param_and_type%=*}"
+      type="${param_and_type#*=}"
 
-    case $type in
-    string)
-      required_params="${required_params} --set ${param}=BOGUS"
-      ;;
-    int)
-      required_params="${required_params} --set ${param}=0"
-      ;;
-    bool)
-      required_params="${required_params} --set ${param}=true"
-      ;;
-    *)
-      echo "type ${type} not supported"
-      return 1
-      ;;
-    esac
-  done
+      case $type in
+      string)
+        required_params="${required_params} --set ${param}=BOGUS"
+        ;;
+      int)
+        required_params="${required_params} --set ${param}=0"
+        ;;
+      bool)
+        required_params="${required_params} --set ${param}=true"
+        ;;
+      *)
+        echo "type ${type} not supported"
+        return 1
+        ;;
+      esac
+    done
+
+  fi
 
   echo "${required_params}"
 }
