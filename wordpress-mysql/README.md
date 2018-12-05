@@ -1,5 +1,5 @@
 # Kubernetes Wordpress + Azure MySQL Bundle
-### "Because you need a datbase and probably don't want to manage it yourself"
+### "Because you need a database and probably don't want to manage it yourself"
 
 This bundle provisions an Azure MySQL instance, creates a database, installs Wordpress on a given AKS cluster and connects the wordpress application to the newly provisioned Azure MySQL instance.
 
