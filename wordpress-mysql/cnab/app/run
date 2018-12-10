@@ -31,7 +31,7 @@ case $action in
 
         mysql_host="$CNAB_P_MYSQL_DB_SERVICE_NAME.mysql.database.azure.com"
         echo "Installing remote chart with connection to Azure MySQL..."
-        helm install -n $name $mychart --set externalDatabase.host=$mysql_host,externalDatabase.user=$MYSQL_USER,externalDatabase.password=$MYSQL_PASSWORD,mariadb.enabled=false
+        helm install -n $name $mychart --set externalDatabase.host=$mysql_host,externalDatabase.user=$MYSQL_USER@$CNAB_P_MYSQL_DB_SERVICE_NAME,externalDatabase.password=$MYSQL_PASSWORD,mariadb.enabled=false
 
         echo "Congratulations! Enjoy your new wordpress application running on AKS and connected to your newly provisioned mysql instance on Azure!"
 
