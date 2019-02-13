@@ -1,10 +1,10 @@
 {
     "name": "armbase",
-    "version": "0.1.0",
+    "version": "0.3.1",
     "invocationImages": [
         {
         "imageType": "docker",
-        "image": "cnab/armbase:0.1.0"
+        "image": "cnab/armbase:0.3.1"
         }
     ],
     "parameters": {

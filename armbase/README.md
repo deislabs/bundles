@@ -66,3 +66,60 @@ Example:
   }
 }
 ```
+
+### Using this as a base bundle
+
+To create a new bundle that can use this ARM installer, simply start your Dockerfile with the following:
+
+```Dockerfile
+FROM cnab/armbase:0.1.0
+
+# Then copy your ARM templates to the /cnab/app/arm folder:
+COPY app/arm /cnab/app/arm
+```
+
+Make sure you expose the parameters and credentials in your `bundle.json`/`bundle.cnab`:
+
+```json
+{
+    "name": "arm-aci",
+    "version": "0.1.0",
+    "invocationImages": [
+        {
+            "imageType": "docker",
+            "image": "technosophos/arm-aci:0.1.0"
+        }
+    ],
+    "images": [
+        {
+            "imageType": "docker",
+            "image": "microsoft/aci-helloworld",
+            "digest": "sha256:a3b2eb140e6881ca2c4df4d9c97bedda7468a5c17240d7c5d30a32850a2bc573"
+        }
+    ],
+    "parameters": {
+        "azure_resource_group": {
+            "defaultValue": "armbase-default",
+            "type": "string"
+        },
+        "azure_location": {
+            "defaultValue": "useast",
+            "type": "string"
+        }
+    },
+    "credentials": {
+        "tenant_id": {
+            "env": "AZURE_TENANT_ID"
+        },
+        "client_id": {
+            "env": "AZURE_CLIENT_ID"
+        },
+        "client_secret": {
+            "env": "AZURE_CLIENT_SECRET"
+        },
+        "subscription_id": {
+            "env": "AZURE_SUBSCRIPTION_ID"
+        }
+    }
+}
+```

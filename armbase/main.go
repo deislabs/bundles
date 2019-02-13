@@ -52,6 +52,7 @@ func install(subscriptionID string) {
 	if err != nil {
 		exitf("failed to read parameters: %s", err)
 	}
+	params = []byte(os.ExpandEnv(string(params)))
 
 	if err := createGroup(groupName, subscriptionID); err != nil {
 		exitf("cannot create group: %s", err)
@@ -103,7 +104,9 @@ func destroyGroup(name, subID string) error {
 		return err
 	}
 
-	return res.WaitForCompletionRef(context.TODO(), client.Client)
+	err = res.WaitForCompletionRef(context.TODO(), client.Client)
+	fmt.Println(res.Status())
+	return err
 }
 
 func createDeployment(group, dep, subID string) error {
@@ -134,5 +137,16 @@ func createDeployment(group, dep, subID string) error {
 	if err != nil {
 		return err
 	}
-	return res.WaitForCompletionRef(context.TODO(), client.Client)
+	err = res.WaitForCompletionRef(context.TODO(), client.Client)
+	if err != nil {
+		return err
+	}
+	response, err := res.GetResult(client)
+	data, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+	fmt.Println(string(data))
+	//fmt.Println(res.Status())
+	return err
 }

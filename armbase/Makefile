@@ -16,12 +16,12 @@ endif
 GIT_TAG  := $(shell git describe --tags --always)
 VERSION  := ${GIT_TAG}
 
-.PHONY: build
-build:
+.PHONY: build-local
+build-local:
 	go build $(GOFLAGS) -o $(BINDIR)/$(TARGET) -ldflags '$(LDFLAGS)' ./...
 
-.PHONY: cxbuild
-cxbuild:
+.PHONY: build
+build:
 	GOOS=linux GOARCH=amd64 go build $(GOFLAGS) -o cnab/app/armup -ldflags '$(LDFLAGS)' ./...
 
 # Note: to build/push the Docker image for this bundle,
