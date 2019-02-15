@@ -105,15 +105,14 @@ endif
 
 JSON_SCHEMA_URI  := https://api.github.com/repos/deislabs/cnab-spec/contents/schema/bundle.schema.json
 JSON_SCHEMA_FILE := /tmp/bundle.schema.json
+JSON_SCHEMA_WGET := wget -q --header 'Accept: application/vnd.github.v3.raw' -O $(JSON_SCHEMA_FILE) $(JSON_SCHEMA_URI)
 VALIDATOR_IMG    := $(ORG)/$(PROJECT)-ajv
 VALIDATOR_CMD    := ajv test -s $(JSON_SCHEMA_FILE) -d $(BUNDLE)/bundle.json --valid
 
 .PHONY: build-validator
 build-validator:
-	@docker build -f Dockerfile.ajv \
-		--build-arg json_schema_uri=$(JSON_SCHEMA_URI) \
-		--build-arg json_schema_file=$(JSON_SCHEMA_FILE) \
-		-t $(VALIDATOR_IMG) .
+	@$(JSON_SCHEMA_WGET)
+	@docker build -f Dockerfile.ajv -t $(VALIDATOR_IMG) .
 
 .PHONY: validate
 validate:
@@ -122,6 +121,7 @@ ifndef BUNDLE
 else
 	@docker run --rm \
 		-v ${BASE_DIR}:/root \
+		-v $(JSON_SCHEMA_FILE):$(JSON_SCHEMA_FILE) \
 		-w /root \
 		-e BUNDLE=$(BUNDLE) \
 		$(VALIDATOR_IMG) sh -c '$(VALIDATOR_CMD)'
@@ -130,10 +130,7 @@ endif
 .PHONY: build-validator-local
 build-validator-local:
 	@npm install -g ajv-cli
-	@wget -q \
-		--header 'Accept: application/vnd.github.v3.raw' \
-		-O $(JSON_SCHEMA_FILE) \
-		$(JSON_SCHEMA_URI)
+	@$(JSON_SCHEMA_WGET)
 
 .PHONY: validate-local
 validate-local:
