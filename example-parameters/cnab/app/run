@@ -1,0 +1,11 @@
+#!/bin/sh
+
+action=$CNAB_ACTION
+name=$CNAB_INSTALLATION_NAME 
+
+echo "=====> $GREETING <====="
+echo "=> Parameter 'port' was set to ${CNAB_P_PORT}"
+echo "=> BEGIN config {"
+cat /opt/example-parameters/config.txt
+echo "} END config"
+echo "=> Action '$action' complete for '$name'"

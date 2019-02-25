@@ -1,0 +1,40 @@
+{
+    "name": "example-parameters",
+    "version": "0.0.1",
+    "invocationImages": [
+        {
+        "imageType": "docker",
+        "image": "cnab/example-parameters:0.1.0"
+      }
+    ],
+    "images": [],
+    "parameters": {
+        "port": {
+            "defaultValue": 8080,
+            "type": "int",
+            "metadata": {
+                "description": "this will be $CNAB_P_PORT"
+            }
+        },
+        "greeting": {
+            "required": true,
+            "type": "string",
+            "destination": {
+                "env": "GREETING"
+            },
+            "metadata":{
+                "description": "this will be in $GREETING"
+            }
+        },
+        "config": {
+            "defaultValue": "",
+            "type": "string",
+            "destination": {
+                "path": "/opt/example-parameters/config.txt"
+            },
+            "metadata": {
+                "description": "this will be located in a file"
+            }
+        }
+    }
+}
