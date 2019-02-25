@@ -16,15 +16,24 @@ In `bundle.json`:
 "parameters": {
   "domain": {
     "defaultValue": "containernativelabs.io",
-    "type": "string"
+    "type": "string",
+    "destination": {
+      "env": "DOMAIN"
+    }
   },
   "resource_group": {
     "defaultValue": "duffle-aks",
-    "type": "string"
+    "type": "string",
+    "destination": {
+      "env": "RESOURCE_GROUP"
+    }
   },
   "lego_email": {
     "defaultValue": "minooral@microsoft.com",
-    "type": "string"
+    "type": "string",
+    "destination": {
+      "env": "LEGO_EMAIL"
+    }
   }
 },
 "credentials": {

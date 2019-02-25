@@ -34,14 +34,17 @@ for your project. Specifically, the credentials Ansible expects are:
 }
 ```
 
-If the `check` parameter is passed in (translated to `CNAB_P_CHECK`), then this will
+If the `check` parameter is passed in (via the provided `destination` method, as seen below), then this will
 run Ansible in `--check` mode instead of regular mode:
 
 ```json
 "parameters": {
     "check": {
         "defaultValue": false,
-        "type": "boolean"
+        "type": "boolean",
+        "destination": {
+            "env": "CHECK"
+        }
     }
 }
 ```

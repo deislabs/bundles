@@ -3,8 +3,8 @@ export KUBECONFIG="/root/.kube/config"
 action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME 
 mychart=/cnab/app/charts/alpine
-greeting=${CNAB_P_GREETING:-"Hi"}
-ns=${CNAB_P_NAMESPACE:-"duffledemo"}
+greeting=${GREETING:-"Hi"}
+ns=${NAMESPACE:-"duffledemo"}
 
 echo "[== $greeting Duffle user ==]"
 case $action in

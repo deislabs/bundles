@@ -16,7 +16,7 @@ To use this as a base image:
 FROM cnab/terraform:latest
 
 COPY my/terraform/dir /cnab/app/tf
-# Copy your Dockerfile and bundle.json, too
+COPY my/Dockerfile /cnab/Dockerfile
 ```
 
 See the `aks-terraform` example to see how to build such an invocation image.

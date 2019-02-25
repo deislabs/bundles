@@ -2,7 +2,7 @@ DOCKER=/usr/local/bin/docker
 
 .PHONY: install
 install:
-	@echo "Basic Auth: ${CNAB_P_BASIC_AUTH}"
+	@echo "Basic Auth: ${BASIC_AUTH}"
 	$(DOCKER) stack deploy func --compose-file docker-compose.yml
 
 .PHONY: upgrade

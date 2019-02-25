@@ -4,7 +4,7 @@ action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME
 ANSIBLE_PARAMS=""
 
-if [[ ""$CNAB_P_CHECK == "true" ]]; then
+if [[ ""$CHECK == "true" ]]; then
     $ANSIBLE_PARAMS="--check"
 fi
 

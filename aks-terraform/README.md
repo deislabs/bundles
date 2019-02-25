@@ -73,8 +73,6 @@ Relevant to the AKS cluster being created:
 
 All of these have defaults, and shouldn't be necessary to override.
 
-**Note:** All bundle parameters listed in the `parameters` section of the `bundle.json` file will automatically be exported for use by Terraform (via corresponding `TF_VAR_<var>` exports).
-
 See `bundle.json` for what the default configuration looks like.
 
 # AKS cluster life cycle via Duffle

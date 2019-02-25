@@ -4,7 +4,7 @@ set -e
 export AZURETOKENS="/root/.azure/accessTokens.json"
 action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME 
-greeting=${CNAB_P_GREETING:-"Hi! Let's create an AKS cluster, install helm, and kube-lego"}
+greeting=${GREETING:-"Hi! Let's create an AKS cluster, install helm, and kube-lego"}
 
 echo "[== $greeting Duffle user ==]"
 case $action in
@@ -14,14 +14,14 @@ case $action in
         # az login --service-principal -u $APP_ID -p $APP_ID_PASSWORD --tenant $TENANT_ID
 
         echo "Creating resource group"
-        az group create --name $CNAB_P_RESOURCE_GROUP --location eastus
+        az group create --name $RESOURCE_GROUP --location eastus
 
-        echo "Creating 3 node AKS cluster in $CNAB_P_RESOURCE_GROUP resource group"
+        echo "Creating 3 node AKS cluster in $RESOURCE_GROUP resource group"
         echo "This may take a while so go get a coffee treat yoself"
         echo "or checkout your AKS cluster provisioning in the Azure portal!"
-        az aks create --resource-group $CNAB_P_RESOURCE_GROUP --name duffle-aks --node-count 3 --enable-addons monitoring --generate-ssh-keys
+        az aks create --resource-group $RESOURCE_GROUP --name duffle-aks --node-count 3 --enable-addons monitoring --generate-ssh-keys
 
-        az aks get-credentials --resource-group $CNAB_P_RESOURCE_GROUP --name duffle-aks
+        az aks get-credentials --resource-group $RESOURCE_GROUP --name duffle-aks
         echo "Installing kubectl"
         az aks install-cli #TODO: move this to Dockerfile
 
@@ -51,18 +51,18 @@ case $action in
         echo 'End point ready:' && echo $external_ip
 
         echo "Creating a DNS a record to point domain at nginx loadbalancer"
-        az network dns record-set a add-record --resource-group duffle-demo --zone-name $CNAB_P_DOMAIN --record-set-name @ --ipv4-address $external_ip
-        echo "$CNAB_P_DOMAIN now points to $external_ip"
+        az network dns record-set a add-record --resource-group duffle-demo --zone-name $DOMAIN --record-set-name @ --ipv4-address $external_ip
+        echo "$DOMAIN now points to $external_ip"
 
         echo "Installing kube-lego to manage certificates"
-        helm install stable/kube-lego --namespace kube-system --set config.LEGO_EMAIL=$CNAB_P_LEGO_EMAIL,config.LEGO_URL=https://acme-v01.api.letsencrypt.org/directory
+        helm install stable/kube-lego --namespace kube-system --set config.LEGO_EMAIL=$LEGO_EMAIL,config.LEGO_URL=https://acme-v01.api.letsencrypt.org/directory
 
         echo "You're all set! You've got an AKS cluster configured with Helm and certificate management!!"
 
         ;;
     uninstall)
         echo "uninstall action"
-        az group delete $CNAB_P_RESOURCE_GROUP
+        az group delete $RESOURCE_GROUP
         ;;
     upgrade)
         echo "Upgrade action"

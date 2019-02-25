@@ -5,19 +5,6 @@ action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME
 tfdir=/cnab/app/tf/
 
-# translate_vars translates all env vars prefixed by CNAB_P_ into corresponding TF_VAR_ env vars, as used by Terraform
-# e.g., CNAB_P_LOCATION becomes TF_VAR_location
-function translate_vars() {
-    cnab_prefix="CNAB_P_"
-
-    for cnab_var in $(compgen -v "${cnab_prefix}"); do
-        var="$(echo "${cnab_var#${cnab_prefix}}" | awk '{print tolower($0)}')"
-        export "TF_VAR_${var}"="${!cnab_var}"
-    done
-}
-
-translate_vars
-
 export init_backend="${TF_VAR_backend:-false}"
 
 if [[ "${init_backend}" == "true" ]]; then

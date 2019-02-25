@@ -1,6 +1,7 @@
 {
     "name": "ansible-azurevm",
     "version": "0.1.0",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",
@@ -10,7 +11,10 @@
     "parameters": {
         "check": {
             "defaultValue": false,
-            "type": "boolean"
+            "type": "boolean",
+            "destination": {
+                "env": "CHECK"
+            }
         }
     },
     "credentials": {

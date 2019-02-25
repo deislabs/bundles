@@ -1,6 +1,7 @@
 {
     "name": "example-credentials",
     "version": "0.0.1",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",

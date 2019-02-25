@@ -1,6 +1,7 @@
 {
     "name": "johnmccabe/openfaas",
     "version": "0.9.11",
+    "schemaVersion": "v1.0.0-WD",
     "description": "OpenFaaS: Serverless Functions made Simple",
     "keywords": [
         "openfaas",
@@ -61,7 +62,10 @@
     "parameters": {
         "basic_auth": {
             "type": "string",
-            "defaultValue": "true"
+            "defaultValue": "true",
+            "destination": {
+                "env": "BASIC_AUTH"
+            }
         }
     },
     "credentials": {

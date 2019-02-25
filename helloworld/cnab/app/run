@@ -5,7 +5,7 @@
 action=$CNAB_ACTION
 name=$CNAB_INSTALLATION_NAME 
 
-echo "Port parameter was set to ${CNAB_P_PORT}"
+echo "Port parameter was set to ${PORT}"
 case $action in
     install)
     echo "Install action"

@@ -1,13 +1,22 @@
 {
     "name": "k8sbase",
     "version": "0.1.0",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",
         "image": "cnab/k8sbase:latest"
         }
     ],
-    "parameters": {},
+    "parameters": {
+        "helm_options": {
+            "defaultValue": "--dry-run --debug",
+            "type": "string",
+            "destination": {
+                "env": "HELM_OPTIONS"
+            }
+        }
+    },
     "credentials": {},
     "actions": {
         "status": {

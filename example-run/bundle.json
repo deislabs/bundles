@@ -1,6 +1,7 @@
 {
     "name": "example-run",
     "version": "0.0.1",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",
@@ -11,6 +12,9 @@
         "greeting": {
             "defaultValue": "hello",
             "type": "string",
+            "destination": {
+                "env": "GREETING"
+            },
             "metadata":{
                 "description": "this will be in $GREETING"
             }

@@ -140,22 +140,40 @@ else
 	@$(VALIDATOR_CMD)
 endif
 
-# duffle commands in functional tests will run in insecure mode if this is set to 'true'
-INSECURE ?= false
+## Functional test flags/values
+
+# duffle commands will run in insecure mode if this is 'true'
+INSECURE     ?= false
+# duffle will export a thick bundle (vs thin) if this is 'true'
+EXPORT_THICK ?= false
+# duffle commands will run with the driver set by DRIVER
+DRIVER       ?= debug
 
 .PHONY: test-functional
 test-functional:
 ifeq ($(INSECURE),false)
 	make $(MAKE_OPTS) sign-local
 endif
-	./scripts/test-functional.sh
+	DRIVER=$(DRIVER) ./scripts/test-functional.sh
 
 .PHONY: test-functional-docker
 test-functional-docker:
-	docker run --rm \
+	@docker pull $(DUFFLE_IMG)
+	@docker run --rm \
 		-v ${BASE_DIR}:/src \
 		-w /src \
+		-e GIT=":" \
 		-e BUNDLE=$(BUNDLE) \
 		-e INSECURE=$(INSECURE) \
+		-e DRIVER=$(DRIVER) \
+		-e EXPORT_THCK=$(EXPORT_THICK) \
 		-e CHECK=which \
 		$(DUFFLE_IMG) sh -c 'duffle init -u "test@$(ORG)-$(PROJECT).com" && make $(MAKE_OPTS) test-functional'
+
+.PHONY: clean
+clean:
+ifndef BUNDLE
+	$(call bundle-all,clean)
+else
+	rm -f $(BUNDLE)/bundle.cnab
+endif

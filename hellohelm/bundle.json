@@ -1,6 +1,7 @@
 {
     "name": "hellohelm",
     "version": "0.1.0",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",
@@ -23,7 +24,10 @@
     "parameters": {
         "port": {
             "defaultValue": 8080,
-            "type": "int"
+            "type": "int",
+            "destination": {
+                "env": "PORT"
+            }
         }
     },
     "credentials": {

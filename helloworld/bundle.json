@@ -1,6 +1,7 @@
 {
     "name": "helloworld",
     "version": "0.1.1",
+    "schemaVersion": "v1.0.0-WD",
     "invocationImages": [
         {
         "imageType": "docker",
@@ -10,7 +11,10 @@
     "parameters": {
         "port": {
             "defaultValue": 8080,
-            "type": "int"
+            "type": "int",
+            "destination": {
+                "env": "PORT"
+            }
         }
     },
     "actions": {

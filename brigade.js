@@ -125,13 +125,13 @@ async function notificationWrap(job, note, conclusion) {
 
     note.conclusion = conclusion;
     note.summary = `Task "${ job.name }" passed`;
-    note.text = note.text = "```" + res.toString() + "```\nTest Complete";
+    note.text = `Test Complete: ${conclusion}`;
     return await note.run();
   } catch (e) {
     const logs = await job.logs();
     note.conclusion = "failure";
     note.summary = `Task "${ job.name }" failed for ${ e.buildID }`;
-    note.text = "```" + logs + "```\nFailed with error: " + e.toString();
+    note.text = "Failed with error: " + e.toString();
     try {
       return await note.run();
     } catch (e2) {

@@ -16,7 +16,7 @@ services:
             faas_nats_port: 4222
             direct_functions: "true"    # Functions are invoked directly over the overlay network
             direct_functions_suffix: ""
-            basic_auth: "${CNAB_P_BASIC_AUTH:-true}"
+            basic_auth: "${BASIC_AUTH:-true}"
             secret_mount_path: "/run/secrets/"
             scale_from_zero: "true"
         deploy:
@@ -48,7 +48,7 @@ services:
             read_timeout:  "300s"   # set both here, and on your functions
             write_timeout: "300s"   # set both here, and on your functions
             DOCKER_API_VERSION: "1.30"
-            basic_auth: "${CNAB_P_BASIC_AUTH:-true}"
+            basic_auth: "${BASIC_AUTH:-true}"
             secret_mount_path: "/run/secrets/"
         deploy:
             placement:
@@ -96,7 +96,7 @@ services:
         environment:
             max_inflight: "1"
             ack_wait: "300s"    # Max duration of any async task / request
-            basic_auth: "${CNAB_P_BASIC_AUTH:-true}"
+            basic_auth: "${BASIC_AUTH:-true}"
             secret_mount_path: "/run/secrets/"
         deploy:
             resources:
