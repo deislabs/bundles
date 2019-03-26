@@ -169,7 +169,7 @@ test-functional-docker:
 		-e BUNDLE=$(BUNDLE) \
 		-e INSECURE=$(INSECURE) \
 		-e DRIVER=$(DRIVER) \
-		-e EXPORT_THCK=$(EXPORT_THICK) \
+		-e EXPORT_THICK=$(EXPORT_THICK) \
 		-e CHECK=which \
 		$(DUFFLE_IMG) sh -c 'duffle init -u "test@$(ORG)-$(PROJECT).com" && make $(MAKE_OPTS) test-functional'
 
