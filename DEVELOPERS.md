@@ -5,10 +5,10 @@
 ### Build
 
 ```shell
-# builds the invocation image and signs the provided bundle
+# builds the invocation image for a given bundle
 BUNDLE=<bundle> make build
 
-# builds invocation images and signs all bundles
+# builds invocation images for all bundles
 make build
 ```
 
@@ -31,20 +31,6 @@ BUNDLE=<bundle> make docker-push
 # pushes invocation images for all bundles
 make docker-push
 ```
-
-### Sign Bundle(s)
-
-This target currently requires and uses the `duffle` binary in one's path.
-
-```shell
-# signs the provided bundle
-BUNDLE=<bundle> make sign
-
-# signs all bundles
-make sign
-```
-
-Note: the `sign-local` variant will output the signed bundle into each bundle's directory in the form of `bundle.cnab`.
 
 ### Validate Bundle(s)
 
