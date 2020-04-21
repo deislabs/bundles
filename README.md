@@ -21,7 +21,7 @@ or the latest release can be fetched from the [duffle releases](https://github.c
 
 ## Quick Start
 
-Here we ensure a bundle is built (and signed) and then install the bundle via `duffle`:
+Here we build the bundle and then install the bundle via `duffle`:
 
 ```console
 $ BUNDLE=helloworld VERSION=latest make build
@@ -170,7 +170,7 @@ $ duffle install -c example-helm-creds my-helm-test hellohelm
 
 ## Developers
 
-To invoke common commands on bundles in this repo, such as `make sign`, `make docker-build` and `make docker-push`, one can run `BUNDLE=<bundle name> make <target>` (or simply `make <target>` to run against all bundles.)  See [DEVELOPERS.md](DEVELOPERS.md) for more details.
+To invoke common commands on bundles in this repo, such as `make build`, `make docker-build` and `make docker-push`, one can run `BUNDLE=<bundle name> make <target>` (or simply `make <target>` to run against all bundles.)  See [DEVELOPERS.md](DEVELOPERS.md) for more details.
 
 You can see three different "flavors" of CNAB bundle here.
 
